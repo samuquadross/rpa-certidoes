@@ -26,12 +26,13 @@ app.post('/solicitar-certidao', async (req, res) => {
     console.log('[RPA] Iniciando bot...');
 
     browser = await puppeteer.launch({
-      headless: true,
-      args: [
+    headless: true,
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium',
+    args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
-      ],
+    ],
     });
 
     const page = await browser.newPage();
